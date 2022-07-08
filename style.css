@@ -1,0 +1,105 @@
+@import url("https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Kumbh Sans", sans-serif;
+}
+
+body {
+  max-height: 100vh;
+  background: rgb(255, 255, 255);
+  min-height: 100vh;
+  padding: 0 10rem;
+}
+
+/* navbar */
+
+.navbar {
+  width: 100%;
+  height: 80px;
+  background: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px rgb(214, 213, 213) solid;
+}
+
+.navbar .nav__left {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.nav__left .nav__logo {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-right: 3rem;
+}
+
+.nav__left ul {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  height: 100%;
+}
+
+ul .nav__route {
+  margin: 0 0.5rem;
+  color: #444;
+  height: 100%;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+ul .nav__route:hover {
+  color: #000;
+  position: relative;
+}
+
+.nav__route:hover::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 5px;
+  background: hsl(26, 100%, 55%);
+  transition: 0.3s ease-in-out;
+  width: 100%;
+}
+
+.navbar .nav__right {
+  display: flex;
+  align-items: center;
+}
+
+.nav__right > ul {
+  display: flex;
+  align-items: center;
+  list-style: none;
+}
+
+ul .nav__cart_icon {
+  margin: 0 0.5rem;
+  color: #444;
+  height: 100%;
+  cursor: pointer;
+}
+
+.nav__cart_icon img {
+  height: 30px;
+  width: 30px;
+}
+
+.nav__cart_icon.avatar img {
+  height: 50px;
+  width: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-left: 1.5rem;
+}
