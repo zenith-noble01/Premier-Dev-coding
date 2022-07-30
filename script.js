@@ -12,7 +12,8 @@ displayMenu.addEventListener("click", () => {
 });
 
 //default data
-let productData = {};
+let productData = {},
+  firstImage;
 
 //fetch data from the urlimage
 
@@ -32,10 +33,12 @@ const fetchData = async () => {
       `;
       imageList.appendChild(productList);
     });
-    setCurrentProduct(data);
-    const firstImage = data.products[1].image;
 
-    bigImage.src = firstImage;
+    //get the first image
+    firstImage = await data.products[0];
+    bigImage.src = firstImage.image;
+
+    setCurrentProduct(data);
   } catch (error) {
     console.log(error.message);
   }
@@ -52,10 +55,18 @@ function setCurrentProduct(data) {
     if (e.target.tagName === "IMG") {
       let id = e.target.getAttribute("alt");
       const product = data.products.find((product) => product._id == id);
+      //check if the firstImage.image is equal to the bigImage
+
       if (product) {
         if (product._id === id) {
           //add the present class to the image
           e.target.classList.add("present");
+
+          //check if the bigImage.src is equal to the firstImage.img and apply the present class to the bigImage.src
+          // if (bigImage.src === firstImage.image) {
+          //   bigImage.classList.add("present");
+          // }
+
           //remove the present class from the other images
           imageList.querySelectorAll("img").forEach((image) => {
             if (image.getAttribute("alt") !== id) {
