@@ -26,14 +26,14 @@ const fetchData = async () => {
       const productList = document.createElement("li");
       productList.classList.add("list__items");
       productList.innerHTML = `
-      <img src="${product.image}" alt="${product._id}" data=${JSON.stringify(
-        product
-      )}>
+      <img src="${product.image}" alt="${
+        product._id
+      }" class="" data=${JSON.stringify(product)}>
       `;
       imageList.appendChild(productList);
     });
     setCurrentProduct(data);
-    const firstImage = data.products[3].image;
+    const firstImage = data.products[1].image;
 
     bigImage.src = firstImage;
   } catch (error) {
@@ -51,9 +51,18 @@ function setCurrentProduct(data) {
   bottom_list.addEventListener("click", (e) => {
     if (e.target.tagName === "IMG") {
       let id = e.target.getAttribute("alt");
-      // console.log("id of product: ", e.target.getAttribute("alt"));
       const product = data.products.find((product) => product._id == id);
       if (product) {
+        if (product._id === id) {
+          //add the present class to the image
+          e.target.classList.add("present");
+          //remove the present class from the other images
+          imageList.querySelectorAll("img").forEach((image) => {
+            if (image.getAttribute("alt") !== id) {
+              image.classList.remove("present");
+            }
+          });
+        }
         productData = product;
         bigImage.src = product.image;
       } else {

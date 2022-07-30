@@ -157,6 +157,12 @@ ul .nav__cart_icon {
 .left__bottom ul li img {
   width: 4rem;
   border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.left__bottom ul li img.present {
+  border: 5px solid hsl(26, 100%, 55%);
+  opacity: 0.4;
 }
 
 /* container right */
