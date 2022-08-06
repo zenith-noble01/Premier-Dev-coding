@@ -27,14 +27,20 @@
         </div>
       </div>
       <div class="nav__right">
-        <ul>
-          <li class="nav__cart_icon">
+        <ul >
+          <li class="nav__cart_icon" data-click-drop>
             <img src="./images/icon-cart.svg" alt="" />
           </li>
-          <li class="nav__cart_icon avatar">
-        <ul class="flex">
+          <li class="nav__cart_icon avatar" data-click-drop>
             <img src="./images/image-avatar.png" alt="" />
           </li>
+          <div class="drop down" data-drop>
+            <div class="drop__head">
+              <h1>Cart</h1>
+            </div>
+            <ul class="cart__body" data-cart>
+            </ul>
+          </div>
         </ul>
       </div>
     </nav>
@@ -61,16 +67,16 @@
         </div>
         <div class="right__ctaBtn__container">
          <div class="qty__container">
-           <button>
+           <button id="minus">
              <img src="./images/icon-minus.svg" alt="">
-           </button>
+           </button> 
            <p id="right__product__qty">0</p>
-           <button>
+           <button id="add">
              <img src="./images/icon-plus.svg" alt="">
            </button>
          </div>
 
-         <button class="right__ctaBtn">
+         <button class="right__ctaBtn" id="addCartBtn">
           <img src="./images/icon-cart-white.svg" >
            <p>Add to cart</p>
         </div>

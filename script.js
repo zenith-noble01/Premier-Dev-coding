@@ -4,16 +4,31 @@ const displayMenu = document.querySelector("#menu__toggle"),
   url = "https://pd-product.herokuapp.com/api/pd/products",
   imageList = document.querySelector("[data-images]"),
   bigImage = document.querySelector("[data-big-image]"),
-  bottom_list = document.querySelector(".bottom__list");
+  bottom_list = document.querySelector(".bottom__list"),
+  addBtn = document.getElementById("add"),
+  subBtn = document.getElementById("minus"),
+  nullBtn = document.getElementById("right__product__qty"),
+  cartBtn = document.querySelectorAll("[data-click-drop]"),
+  drop = document.querySelector("[data-drop]"),
+  addToCartBtn = document.getElementById("addCartBtn");
+
+//default data
+let productData = {},
+  count = 0,
+  firstImage;
+<p>${countNubmer}</p>;
+
+//addEventListener to the cartBtn
+cartBtn.forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    drop.classList.toggle("down");
+  });
+});
 
 displayMenu.addEventListener("click", () => {
   button.classList.toggle("open");
   menu.classList.toggle("active");
 });
-
-//default data
-let productData = {},
-  firstImage;
 
 //fetch data from the urlimage
 
@@ -46,9 +61,9 @@ const fetchData = async () => {
 
 fetchData();
 
-function getOnedata(product) {
-  console.log(product);
-}
+// function getOnedata(product) {
+//   console.log(product);
+// }
 
 function setCurrentProduct(data) {
   bottom_list.addEventListener("click", (e) => {
@@ -62,11 +77,6 @@ function setCurrentProduct(data) {
           //add the present class to the image
           e.target.classList.add("present");
 
-          //check if the bigImage.src is equal to the firstImage.img and apply the present class to the bigImage.src
-          // if (bigImage.src === firstImage.image) {
-          //   bigImage.classList.add("present");
-          // }
-
           //remove the present class from the other images
           imageList.querySelectorAll("img").forEach((image) => {
             if (image.getAttribute("alt") !== id) {
@@ -74,6 +84,7 @@ function setCurrentProduct(data) {
             }
           });
         }
+
         productData = product;
         bigImage.src = product.image;
       } else {
@@ -82,3 +93,44 @@ function setCurrentProduct(data) {
     }
   });
 }
+addBtn.addEventListener("click", () => {
+  count += 1;
+  nullBtn.textContent = count;
+});
+
+subBtn.addEventListener("click", () => {
+  if (count <= 0) {
+    return;
+  } else {
+    count -= 1;
+    nullBtn.textContent = count;
+  }
+});
+
+//add to cart
+const addToCart = () => {
+  <p>${countNubmer}</p>;
+  const cart = document.querySelector("[data-cart]");
+
+  const cartItem = document.createElement("li");
+  cartItem.classList.add("cart__items");
+  const countNubmer = count;
+  console.log(productData.productName);
+
+  if (countNubmer === 0) {
+    const noText = document.createElement("p");
+    noText.classList.add("no__text");
+    <p>${countNubmer}</p>;
+    noText.textContent = "No items in cart";
+    cart.appendChild(noText);
+  } else {
+    cartItem.innerHTML = `
+    <img src="${productData.image}" alt="${productData._id}">
+    <p>${productData.productName}</p>
+    <button class="remove__btn" data-remove-item>-</button>
+    `;
+    cart.appendChild(cartItem);
+  }
+};
+
+addToCartBtn.addEventListener("click", addToCart);
